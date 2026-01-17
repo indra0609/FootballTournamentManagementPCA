@@ -1,0 +1,70 @@
+.about-page {
+  min-height: 70vh;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.6;
+  background:
+    radial-gradient(700px 350px at 20% 0%, rgba(53, 182, 255, 0.22), transparent 60%),
+    radial-gradient(700px 350px at 80% 10%, rgba(108, 255, 143, 0.18), transparent 60%);
+  pointer-events: none;
+}
+
+.badge-soft {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-weight: 700;
+  font-size: 13px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: #fff;
+}
+
+.text-accent {
+  color: rgba(53, 182, 255, 1);
+}
+
+.contact-card .contact-item {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.contact-card .contact-item:last-child {
+  border-bottom: none;
+}
+
+.contact-item .label {
+  font-size: 12px;
+  font-weight: 800;
+  color: rgba(255,255,255,0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.contact-item .value {
+  font-weight: 600;
+  color: #fff;
+}
+
+.contact-link {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 800;
+}
+
+.contact-link:hover {
+  text-decoration: underline;
+}

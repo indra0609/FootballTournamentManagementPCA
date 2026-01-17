@@ -1,0 +1,95 @@
+<div class="mb-3" @fadeSlide>
+  <h2 class="fw-bold mb-1"><i class="fa-solid fa-screwdriver-wrench me-2"></i>Admin Panel</h2>
+  <div class="text-muted2 small">Manage teams, players, matches and results</div>
+</div>
+
+<div class="row g-3" @fadeSlide>
+  <div class="col-lg-6">
+    <div class="glass p-4">
+      <h4 class="fw-bold mb-3">Teams</h4>
+
+      <div class="input-group mb-3">
+        <input [(ngModel)]="newTeamName" class="form-control bg-transparent text-light border-opacity-10" placeholder="New team name..." />
+        <button class="btn btn-accent" (click)="addTeam()"><i class="fa-solid fa-plus me-2"></i>Add</button>
+      </div>
+
+      @for (t of teams; track t.id) {
+        <div class="glass p-3 mb-2 d-flex align-items-center gap-3 hover-up">
+          <img [src]="t.logoUrl" width="44" height="44" class="rounded" />
+          <div class="flex-grow-1">
+            <div class="fw-bold">{{ t.name }}</div>
+            <div class="text-muted2 small">
+              {{ playersOf(t.id).length }} players • {{ t.city }}
+            </div>
+          </div>
+
+          <button class="btn btn-sm btn-outline-light" (click)="addPlayerQuick(t.id)">
+            <i class="fa-solid fa-user-plus me-2"></i>Player
+          </button>
+          <button class="btn btn-sm btn-outline-danger" (click)="deleteTeam(t.id)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="glass p-4">
+      <h4 class="fw-bold mb-3">Create Match</h4>
+
+      <div class="row g-2 mb-3">
+        <div class="col-md-6">
+          <select [(ngModel)]="teamAId" class="form-select bg-transparent text-light border-opacity-10">
+            <option value="">Select Team A</option>
+            @for (t of teams; track t.id) { <option [value]="t.id">{{ t.name }}</option> }
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <select [(ngModel)]="teamBId" class="form-select bg-transparent text-light border-opacity-10">
+            <option value="">Select Team B</option>
+            @for (t of teams; track t.id) { <option [value]="t.id">{{ t.name }}</option> }
+          </select>
+        </div>
+
+        <div class="col-12">
+          <input [(ngModel)]="newMatchVenue" class="form-control bg-transparent text-light border-opacity-10" placeholder="Venue (optional)" />
+        </div>
+      </div>
+
+      <button class="btn btn-accent w-100" (click)="addMatch()">
+        <i class="fa-solid fa-futbol me-2"></i>Create Match
+      </button>
+
+      <hr class="border-opacity-10 my-4">
+
+      <h4 class="fw-bold mb-3">Matches</h4>
+
+      @for (m of matches; track m.id) {
+        <div class="glass p-3 mb-2 hover-up">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="fw-bold">
+              {{ teamName(m.teamAId) }} <span class="text-muted2">vs</span> {{ teamName(m.teamBId) }}
+            </div>
+
+            <div class="d-flex gap-2">
+              @if (m.status === 'Upcoming') {
+                <button class="btn btn-sm btn-outline-light" (click)="markCompleted(m)">
+                  <i class="fa-solid fa-check me-2"></i>Complete
+                </button>
+              }
+              <button class="btn btn-sm btn-outline-danger" (click)="deleteMatch(m.id)">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="text-muted2 small mt-1">
+            {{ m.status }} • {{ m.venue || '-' }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

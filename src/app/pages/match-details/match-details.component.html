@@ -1,0 +1,41 @@
+<div class="mb-3" @fadeSlide>
+  <a routerLink="/matches" class="text-muted2 small"><i class="fa-solid fa-arrow-left me-2"></i>Back to Matches</a>
+</div>
+
+@if (match) {
+  <div class="glass p-4" @fadeSlide>
+    <div class="d-flex align-items-center justify-content-between">
+      <div>
+        <h2 class="fw-bold mb-1">
+          {{ teamName(match.teamAId) }} <span class="text-muted2">vs</span> {{ teamName(match.teamBId) }}
+        </h2>
+        <div class="text-muted2 small">
+          <i class="fa-solid fa-calendar me-2"></i>{{ match.matchDateTime }}
+          <span class="mx-2 opacity-50">•</span>
+          <i class="fa-solid fa-location-dot me-2"></i>{{ match.venue || '-' }}
+        </div>
+      </div>
+      <app-status-badge [status]="match.status"></app-status-badge>
+    </div>
+
+    <hr class="border-opacity-10 my-4">
+
+    @if (match.status === 'Completed') {
+      <div class="text-center">
+        <div class="display-5 fw-bold">{{ match.teamAScore ?? 0 }} : {{ match.teamBScore ?? 0 }}</div>
+        <div class="text-muted2">
+          Winner:
+          <span class="fw-bold">
+            {{ match.winnerTeamId ? teamName(match.winnerTeamId) : 'Draw' }}
+          </span>
+        </div>
+      </div>
+    } @else {
+      <div class="text-center text-muted2">
+        Match not played yet. Please check back later.
+      </div>
+    }
+  </div>
+} @else {
+  <div class="glass p-4">Match not found.</div>
+}

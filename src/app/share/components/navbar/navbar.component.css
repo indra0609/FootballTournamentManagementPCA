@@ -1,0 +1,25 @@
+/* .nav-link.active {
+  color: #fff !important;
+  font-weight: 700;
+} */
+
+.nav-glass {
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
+}
+
+.navbar-nav .nav-link {
+  border-radius: 12px;
+  padding: 10px 14px;
+  transition: all 0.25s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.navbar-nav .nav-link.active {
+  background: rgba(53, 182, 255, 0.18);
+  border: 1px solid rgba(53, 182, 255, 0.35);
+  font-weight: 700;
+}

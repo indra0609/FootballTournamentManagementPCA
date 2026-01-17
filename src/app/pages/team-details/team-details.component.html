@@ -1,0 +1,45 @@
+<div class="mb-3" @fadeSlide>
+  <a routerLink="/teams" class="text-muted2 small"><i class="fa-solid fa-arrow-left me-2"></i>Back to Teams</a>
+</div>
+
+@if (team) {
+  <div class="glass p-4 mb-4" @fadeSlide>
+    <div class="d-flex align-items-center gap-3">
+      <img [src]="team.logoUrl" width="70" height="70" class="rounded" />
+      <div class="flex-grow-1">
+        <h2 class="fw-bold mb-1">{{ team.name }}</h2>
+        <div class="text-muted2 small">
+          <i class="fa-solid fa-location-dot me-2"></i>{{ team.city || '-' }}
+          <span class="mx-2 opacity-50">•</span>
+          <i class="fa-solid fa-user-tie me-2"></i>{{ team.coach || '-' }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="glass p-4" @fadeSlide>
+    <h4 class="fw-bold mb-3"><i class="fa-solid fa-users me-2"></i>Players</h4>
+
+    <div class="row g-3">
+      @for (p of players; track p.id) {
+        <div class="col-md-4 col-lg-3">
+          <div class="glass p-3 hover-up h-100">
+            <div class="d-flex align-items-center gap-3">
+              <img [src]="p.photoUrl || 'https://i.ibb.co/3mV2Yh5/player1.png'" width="54" height="54" class="rounded-circle" />
+              <div class="flex-grow-1">
+                <div class="fw-bold">{{ p.name }}</div>
+                <div class="text-muted2 small">
+                  {{ p.position }} • Jersey #{{ p.jerseyNumber }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <div class="glass p-4">
+    <div class="text-muted2">Team not found.</div>
+  </div>
+}

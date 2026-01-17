@@ -1,0 +1,65 @@
+<div class="mb-3" @fadeSlide>
+  <h2 class="fw-bold mb-1">Matches</h2>
+  <div class="text-muted2 small">Upcoming schedule & completed match results</div>
+</div>
+
+<div class="row g-3" @fadeSlide>
+  <div class="col-lg-6">
+    <div class="glass p-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold mb-0"><i class="fa-regular fa-clock me-2"></i>Upcoming</h4>
+        <span class="text-muted2 small">{{ upcoming.length }} matches</span>
+      </div>
+
+      @for (m of upcoming; track m.id) {
+        <a [routerLink]="['/matches', m.id]" class="glass d-block p-3 hover-up mb-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="fw-bold">
+              {{ teamName(m.teamAId) }} <span class="text-muted2">vs</span> {{ teamName(m.teamBId) }}
+            </div>
+            <app-status-badge [status]="m.status"></app-status-badge>
+          </div>
+
+          <div class="text-muted2 small mt-1">
+            <i class="fa-solid fa-calendar me-2"></i>{{ m.matchDateTime | ddMmm }}
+            <span class="mx-2 opacity-50">•</span>
+            <i class="fa-solid fa-location-dot me-2"></i>{{ m.venue || '-' }}
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="glass p-4">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold mb-0"><i class="fa-solid fa-check me-2"></i>Completed</h4>
+        <span class="text-muted2 small">{{ completed.length }} matches</span>
+      </div>
+
+      @for (m of completed; track m.id) {
+        <a [routerLink]="['/matches', m.id]" class="glass d-block p-3 hover-up mb-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="fw-bold">
+              {{ teamName(m.teamAId) }} <span class="text-muted2">vs</span> {{ teamName(m.teamBId) }}
+            </div>
+            <app-status-badge [status]="m.status"></app-status-badge>
+          </div>
+
+          <div class="text-muted2 small mt-1">
+            <i class="fa-solid fa-calendar me-2"></i>{{ m.matchDateTime | ddMmm }}
+          </div>
+
+          <div class="mt-2 d-flex justify-content-between">
+            <div class="text-muted2 small">
+              <i class="fa-solid fa-location-dot me-2"></i>{{ m.venue || '-' }}
+            </div>
+            <div class="fw-bold">
+              {{ m.teamAScore ?? '-' }} : {{ m.teamBScore ?? '-' }}
+            </div>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</div>

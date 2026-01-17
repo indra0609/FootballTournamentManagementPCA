@@ -1,0 +1,158 @@
+/* h1 { letter-spacing: -0.5px; } */
+
+
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid rgba(255,255,255,0.12);
+  min-height: 420px;
+}
+
+/* ✅ slider container */
+.hero-bg-slider {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ✅ each slide */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateX(100%); /* start from right */
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.65);
+  animation: heroSlider 20s infinite;
+  will-change: transform, opacity;
+}
+
+/* ✅ Each slide appears 5s
+   Move right-to-left in 0.3s (fast)
+*/
+.s1 { background-image: url("https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=1600&q=80"); animation-delay: 0s; }
+.s2 { background-image: url("https://scontent.fbom3-5.fna.fbcdn.net/v/t39.30808-6/307952252_465062908972514_5531311707742196700_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=_lDJsNe-r48Q7kNvwEsg4wl&_nc_oc=AdnzoMEM1AhfRcQ-f_5s6usSO6CpGnhr5h24y3iEIdbvsvklLB4XOw9oUopQ8E2osiIc2lfdLAvCuN0OJWSP_3vY&_nc_zt=23&_nc_ht=scontent.fbom3-5.fna&_nc_gid=BXA374ziCvkXt6a7mjpaIw&oh=00_AfoY4a489fagPaw8RBNA4doxdLs3NmKLGmut_1J1NWvl3Q&oe=697097CB"); animation-delay: 5s; }
+.s3 { background-image: url("https://scontent.fbom3-4.fna.fbcdn.net/v/t39.30808-6/475765087_1017986007013532_6713878703648007366_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=L9mMXXm_Ee0Q7kNvwG-ObBq&_nc_oc=AdkA7pg4KhuNxXaaWaYFPIv2As2wwhSWvN8nDfl2xl8Jqn6btA-mJZWP6OXYbhcoZI82jcEHzZHspHYL7yC_EzKu&_nc_zt=23&_nc_ht=scontent.fbom3-4.fna&_nc_gid=_PCdBFogSY0TXDQkkSeDSA&oh=00_AfpeX0NHXCtSgKm5QU302T68Lo4Ks9d_ansTajptBN9Jrg&oe=69707DE7"); animation-delay: 10s; }
+.s4 { background-image: url("https://images.unsplash.com/photo-1486286701208-1d58e9338013?auto=format&fit=crop&w=1600&q=80"); animation-delay: 15s; }
+
+/* ✅ fast slide in 0.3s, stay 4.4s, slide out 0.3s */
+@keyframes heroSlider {
+  0% { opacity: 0; transform: translateX(100%); }
+  2% { opacity: 1; transform: translateX(0%); }    /* ~0.3s transition */
+  92% { opacity: 1; transform: translateX(0%); }   /* stay visible */
+  100% { opacity: 0; transform: translateX(-30%); } /* exit left quickly */
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(900px 450px at 15% 0%, rgba(53,182,255,0.25), transparent 60%),
+    radial-gradient(900px 450px at 85% 10%, rgba(108,255,143,0.18), transparent 60%),
+    rgba(0,0,0,0.40);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Countdown */
+.countdown {
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+/* latest result score */
+.result-score {
+  font-size: 24px;
+  font-weight: 900;
+  padding: 8px 16px;
+  border-radius: 14px;
+  background: rgba(108,255,143,0.13);
+  border: 1px solid rgba(108,255,143,0.22);
+}
+
+/* team chips */
+.team-chip-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  min-width: 44px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: all 0.2s ease;
+}
+
+.team-chip-link:hover {
+  transform: translateY(-2px);
+  background: rgba(53,182,255,0.16);
+  border: 1px solid rgba(53,182,255,0.30);
+}
+
+/* mini list */
+.mini-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.mini-row {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  transition: all 0.25s ease;
+  color: inherit;
+}
+
+.mini-row:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.09);
+}
+
+.mini-date {
+  font-weight: 900;
+  font-size: 12px;
+  padding: 8px 6px;
+  border-radius: 12px;
+  text-align: center;
+  background: rgba(53,182,255,0.14);
+  border: 1px solid rgba(53,182,255,0.25);
+}
+
+.mini-title { font-weight: 800; font-size: 14px; }
+
+.mini-score {
+  font-weight: 900;
+  font-size: 14px;
+  padding: 7px 10px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.completed-score {
+  background: rgba(108,255,143,0.12);
+  border: 1px solid rgba(108,255,143,0.22);
+}
+
+/* mobile */
+@media (max-width: 576px) {
+  .hero-slider { min-height: 520px; }
+  .countdown { font-size: 24px; }
+}

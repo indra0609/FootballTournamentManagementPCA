@@ -1,0 +1,285 @@
+<!-- <div class="hero p-4 p-md-5 mb-4" @fadeSlide>
+  <div class="hero-content">
+    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+      <div>
+        <div class="text-muted2 small fw-semibold">Parbatipur Cricket Association Club</div>
+        <h1 class="fw-bold mt-2">Football Tournament 2026</h1>
+        <p class="text-muted2 mb-0">Teams • Players • Matches • Results • Admin Panel</p>
+      </div>
+
+      <div class="d-flex gap-2">
+        <a routerLink="/teams" class="btn btn-accent btn-lg">
+          <i class="fa-solid fa-shield-halved me-2"></i>Browse Teams
+        </a>
+        <a routerLink="/matches" class="btn btn-outline-light btn-lg">
+          <i class="fa-solid fa-futbol me-2"></i>View Matches
+        </a>
+      </div>
+    </div>
+
+    <div class="row g-3 mt-4">
+      <div class="col-md-4" @popIn>
+        <div class="glass p-3 hover-up">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="text-muted2 small">Total Teams</div>
+              <div class="fs-2 fw-bold">{{ teams.length }}</div>
+            </div>
+            <i class="fa-solid fa-users fs-1 opacity-75"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4" @popIn>
+        <div class="glass p-3 hover-up">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="text-muted2 small">Upcoming Matches</div>
+              <div class="fs-2 fw-bold">{{ upcomingCount }}</div>
+            </div>
+            <i class="fa-regular fa-clock fs-1 opacity-75"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4" @popIn>
+        <div class="glass p-3 hover-up">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="text-muted2 small">Completed Matches</div>
+              <div class="fs-2 fw-bold">{{ completedCount }}</div>
+            </div>
+            <i class="fa-solid fa-check fs-1 opacity-75"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="glass p-4" @fadeSlide>
+  <div class="d-flex align-items-center justify-content-between">
+    <h4 class="mb-0 fw-bold">Quick Links</h4>
+    <span class="text-muted2 small">Public view accessible for everyone</span>
+  </div>
+
+  <div class="row g-3 mt-2">
+    <div class="col-md-4">
+      <a routerLink="/teams" class="glass d-block p-3 hover-up">
+        <div class="fw-bold"><i class="fa-solid fa-shield-halved me-2"></i>Teams</div>
+        <div class="text-muted2 small">Team details + players</div>
+      </a>
+    </div>
+    <div class="col-md-4">
+      <a routerLink="/matches" class="glass d-block p-3 hover-up">
+        <div class="fw-bold"><i class="fa-solid fa-futbol me-2"></i>Matches</div>
+        <div class="text-muted2 small">Upcoming + completed results</div>
+      </a>
+    </div>
+    <div class="col-md-4">
+      <a routerLink="/admin-login" class="glass d-block p-3 hover-up">
+        <div class="fw-bold"><i class="fa-solid fa-user-lock me-2"></i>Admin Login</div>
+        <div class="text-muted2 small">Manage tournament (CRUD)</div>
+      </a>
+    </div>
+  </div>
+</div> -->
+
+<!-- HERO -->
+<div class="hero hero-slider p-4 p-md-5 mb-4" @fadeSlide>
+  <!-- ✅ background slider -->
+  <div class="hero-bg-slider">
+    <div class="slide s1"></div>
+    <div class="slide s2"></div>
+    <div class="slide s3"></div>
+    <div class="slide s4"></div>
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+      <div>
+        <div class="text-muted2 small fw-semibold">Parbatipur Cricket Association Club</div>
+        <h1 class="fw-bold mt-2">Football Tournament 2026</h1>
+        <p class="text-muted2 mb-0">Teams • Players • Matches • Results • Admin Panel</p>
+      </div>
+
+      <div class="d-flex gap-2 flex-wrap">
+        <a routerLink="/teams" class="btn btn-accent btn-lg">
+          <i class="fa-solid fa-shield-halved me-2"></i>Browse Teams
+        </a>
+        <a routerLink="/matches" class="btn btn-outline-light btn-lg">
+          <i class="fa-solid fa-futbol me-2"></i>View Matches
+        </a>
+      </div>
+    </div>
+
+    <!-- ✅ COUNTDOWN + LATEST RESULT -->
+    <div class="row g-3 mt-4">
+      <div class="col-lg-6" @popIn>
+        <div class="glass p-4 h-100 hover-up">
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <div class="text-muted2 small fw-semibold">Next Match Countdown</div>
+              <div class="countdown mt-2">
+                <i class="fa-regular fa-clock me-2"></i>{{ countdownText }}
+              </div>
+              @if (nextMatch) {
+                <div class="text-muted2 mt-2">
+                  <span class="fw-bold">{{ teamName(nextMatch.teamAId) }}</span>
+                  <span class="mx-2 text-muted2">vs</span>
+                  <span class="fw-bold">{{ teamName(nextMatch.teamBId) }}</span>
+                </div>
+                <div class="text-muted2 small mt-1">
+                  <i class="fa-solid fa-calendar me-2"></i>{{ nextMatch.matchDateTime | ddMmm }}
+                  <span class="mx-2 opacity-50">•</span>
+                  <i class="fa-solid fa-location-dot me-2"></i>{{ nextMatch.venue || 'TBD' }}
+                </div>
+              }
+            </div>
+
+            @if (nextMatch) {
+              <a class="btn btn-sm btn-outline-light" [routerLink]="['/matches', nextMatch.id]">
+                View <i class="fa-solid fa-arrow-right ms-1"></i>
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6" @popIn>
+        <div class="glass p-4 h-100 hover-up">
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <div class="text-muted2 small fw-semibold">Latest Result</div>
+
+              @if (latestResult) {
+                <div class="mt-2 fw-bold fs-5">
+                  {{ teamName(latestResult.teamAId) }}
+                  <span class="text-muted2 mx-2">vs</span>
+                  {{ teamName(latestResult.teamBId) }}
+                </div>
+
+                <div class="d-flex align-items-center gap-3 mt-2">
+                  <div class="result-score">
+                    {{ scoreText(latestResult) }}
+                  </div>
+
+                  <div class="text-muted2">
+                    Winner:
+                    <span class="fw-bold text-light">{{ winnerText(latestResult) }}</span>
+                  </div>
+                </div>
+
+                <div class="text-muted2 small mt-2">
+                  <i class="fa-solid fa-calendar me-2"></i>{{ latestResult.matchDateTime | ddMmm }}
+                  <span class="mx-2 opacity-50">•</span>
+                  <i class="fa-solid fa-location-dot me-2"></i>{{ latestResult.venue || '-' }}
+                </div>
+              } @else {
+                <div class="text-muted2 mt-2">No results yet</div>
+              }
+            </div>
+
+            @if (latestResult) {
+              <a class="btn btn-sm btn-outline-light" [routerLink]="['/matches', latestResult.id]">
+                Details <i class="fa-solid fa-arrow-right ms-1"></i>
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAT CARDS -->
+    <div class="row g-3 mt-3">
+      <!-- TOTAL TEAMS -->
+      <div class="col-md-4" @popIn>
+        <div class="glass p-3 hover-up h-100">
+          <div class="d-flex align-items-center justify-content-between">
+            <div>
+              <div class="text-muted2 small">Total Teams</div>
+              <div class="fs-2 fw-bold">{{ teams.length }}</div>
+            </div>
+            <i class="fa-solid fa-users fs-1 opacity-75"></i>
+          </div>
+
+          <!-- ✅ clickable teams -->
+          <div class="mt-3 d-flex flex-wrap gap-2">
+            @for (t of teams; track t.id) {
+              <a class="team-chip-link"
+                 [routerLink]="['/teams', t.id]"
+                 title="{{ t.name }}">
+                {{ t.name | shortName }}
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- UPCOMING TOP 2 -->
+      <div class="col-md-4" @popIn>
+        <div class="glass p-3 hover-up h-100">
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <div>
+              <div class="text-muted2 small">Upcoming Matches</div>
+              <div class="fs-2 fw-bold">{{ upcomingCount }}</div>
+            </div>
+            <i class="fa-regular fa-clock fs-1 opacity-75"></i>
+          </div>
+
+          <div class="mini-list">
+            @for (m of upcomingTop2; track m.id) {
+              <a class="mini-row" [routerLink]="['/matches', m.id]">
+                <div class="mini-date">{{ m.matchDateTime | ddMmm }}</div>
+
+                <div class="mini-body">
+                  <div class="mini-title">
+                    {{ teamName(m.teamAId) }} <span class="text-muted2">vs</span> {{ teamName(m.teamBId) }}
+                  </div>
+                </div>
+
+                <div class="mini-score">
+                  {{ scoreText(m) }}
+                </div>
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPLETED TOP 2 -->
+      <div class="col-md-4" @popIn>
+        <div class="glass p-3 hover-up h-100">
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <div>
+              <div class="text-muted2 small">Completed Matches</div>
+              <div class="fs-2 fw-bold">{{ completedCount }}</div>
+            </div>
+            <i class="fa-solid fa-check fs-1 opacity-75"></i>
+          </div>
+
+          <div class="mini-list">
+            @for (m of completedTop2; track m.id) {
+              <a class="mini-row" [routerLink]="['/matches', m.id]">
+                <div class="mini-date">{{ m.matchDateTime | ddMmm }}</div>
+
+                <div class="mini-body">
+                  <div class="mini-title">
+                    {{ teamName(m.teamAId) }} <span class="text-muted2">vs</span> {{ teamName(m.teamBId) }}
+                  </div>
+                </div>
+
+                <div class="mini-score completed-score">
+                  {{ scoreText(m) }}
+                </div>
+              </a>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
